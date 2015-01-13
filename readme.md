@@ -38,6 +38,10 @@ gulp-webserver
 
 `npm install --save-dev gulp-webserver`
 
+### Browser-Syncインストール
+
+`npm i -D browser-sync`
+
 
 
 
