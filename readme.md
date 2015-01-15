@@ -43,6 +43,13 @@ gulp-webserver
 `npm i -D browser-sync`
 
 
+### bug
+
+MAMP利用時のphpに対してbrowser-Syncが一度しか聞かない。
+
+接続が切れる？
+
+
 
 
 
