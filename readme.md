@@ -45,7 +45,7 @@ gulp-webserver
 
 ### bug
 
-MAMP利用時のphpに対してbrowser-Syncが一度しか聞かない。
+MAMP利用時のphpに対してbrowser-Syncが一度しか効かない。
 
 接続が切れる？
 
