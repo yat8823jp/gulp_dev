@@ -2,7 +2,6 @@
 var gulp = require('gulp');
 // 画像を圧縮するプラグインの読み込み
 var imagemin = require("gulp-imagemin");
-var webserver = require('gulp-webserver');
 var browserSync = require('browser-sync');
 
 /*
@@ -17,41 +16,39 @@ gulp.task("watchTask", function() { // 「watchTask」という名前のタス�
 	});
 });
 
-// Webサーバー
-gulp.task('webserver', function() {
-	gulp.src('./gulp') //Webサーバーで表示するサイトのルートディレクトリを指定
-	.pipe(webserver({
-		livereload: true, //ライブリロードを有効に
-		directoryListing:true, //ディレクトリ一覧を表示するか。オプションもあり
-		proxies: [{
-			source: '/gulp',
-			target: 'http://localhost:8888/gulp'
-		}]
-    }));
-});
-
 gulp.task('browser-sync', function() {
-	gulp.src('./gulp/') //Webサーバーで表示するサイトのルートディレクトリを指定
-	
-	browserSync(null,{
-		// server: {
-		// 	baseDir: "./"
-		// }
+	// browserSyncが、MAMPのディレクトリ構造と紐づきます
+	browserSync({
 		proxy: "localhost:8888"
-    });
-
+	});
 });
 
-gulp.task('bsReload', function() {
-	// gulp.src('./');
-	// baseDir: "./";
-	// return gulp.src('./');
-	browserSync.reload();
+/**
+* Task
+ */
+gulp.task('HTML:reload', function() {
+	gulp.src('./**/*.html')
+		.pipe( browserSync.reload({ stream:true }) );
+})
+gulp.task('PHP:reload', function() {
+	gulp.src('./**/*.php')
+		.pipe( browserSync.reload({ stream:true }) );
+})
+gulp.task('JS:reload', function() {
+	gulp.src('./**/*.js')
+		.pipe( browserSync.reload({ stream:true }) );
 })
 
-gulp.task('default', ['bsReload','browser-sync'],function(){
-	// gulp.watch('./**/*.php',['bsReload',browserSync.reload]);
-	gulp.watch('./**/*.html',['bsReload']);
-	gulp.watch('./**/*.js',['bsReload']);
-	gulp.watch('./**/*.php',['bsReload']);
+
+/**
+* Command
+ */
+gulp.task('default', ['browser-sync'],function(){
+	gulp.watch('./**/*.php',['PHP:reload']);
+	
+	// **
+	// HTMLやJSなどがあれば、下記を有効にする
+	// *
+	// gulp.watch('./**/*.html',['HTML:reload']);
+	// gulp.watch('./**/*.js',['JS:reload']);
 });
