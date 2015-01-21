@@ -20,34 +20,14 @@ must
 
 ex) htdocs/dev/
 
-初期化
-
-`npm init`
-
-ローカル環境へのインストール
-
-`npm install gulp --save-dev`
-
 ###プラグインインストール
 
-画像圧縮
+必要なプラグインは、package.jsonに記述しています。  
+package.jsonに開発に必要なプラグインが記述している場合は、
 
-`npm install gulp-imagemin --save-dev`
+`npm i`
 
-gulp-webserver
-
-`npm install --save-dev gulp-webserver`
-
-### Browser-Syncインストール
-
-`npm i -D browser-sync`
-
-
-### bug
-
-MAMP利用時のphpに対してbrowser-Syncが一度しか効かない。
-
-接続が切れる？
+だけで、ローカルに必要なプラグインが全てインストールされます。
 
 
 
